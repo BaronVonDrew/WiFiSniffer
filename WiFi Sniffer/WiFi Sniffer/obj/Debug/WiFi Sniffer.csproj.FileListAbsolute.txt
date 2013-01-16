@@ -6,4 +6,3 @@ C:\Users\Chris\documents\visual studio 2012\Projects\WiFi Sniffer\WiFi Sniffer\o
 C:\Users\Chris\documents\visual studio 2012\Projects\WiFi Sniffer\WiFi Sniffer\obj\Debug\WiFi Sniffer.csproj.GenerateResource.Cache
 C:\Users\Chris\documents\visual studio 2012\Projects\WiFi Sniffer\WiFi Sniffer\obj\Debug\WiFi Sniffer.exe
 C:\Users\Chris\documents\visual studio 2012\Projects\WiFi Sniffer\WiFi Sniffer\obj\Debug\WiFi Sniffer.pdb
-C:\Users\Chris\documents\visual studio 2012\Projects\WiFi Sniffer\WiFi Sniffer\obj\Debug\WiFi Sniffer.csprojResolveAssemblyReference.cache

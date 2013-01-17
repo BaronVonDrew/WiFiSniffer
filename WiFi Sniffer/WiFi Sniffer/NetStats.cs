@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Data;
 using System.Net;
 using System.Threading;
+using System.Diagnostics;
 
 namespace WiFi_Sniffer
 {
@@ -17,11 +18,12 @@ namespace WiFi_Sniffer
         IPGlobalProperties ipgp = IPGlobalProperties.GetIPGlobalProperties();
         static TcpConnectionInformation[] tcpi;
         TcpStatistics tcpstat;
+        IPStatHelper ipsh = new IPStatHelper();
 
         //Instance variables
-        public static string HOST = "--";
         public static long RECV_TOTAL = 0;
         public static long SEND_TOTAL = 0;
+        public static string HOST = "";
 
         public NetStats()
         {
@@ -31,6 +33,8 @@ namespace WiFi_Sniffer
             SEND_TOTAL = tcpstat.SegmentsSent;
 
             //Configures the DataTable "cons" to hold four data columns.
+            cons.Columns.Add("Process");
+            cons.Columns.Add("ID");
             cons.Columns.Add("Local Port");
             cons.Columns.Add("Remote Address");
             cons.Columns.Add("Status");
@@ -57,7 +61,9 @@ namespace WiFi_Sniffer
             //Creates a Row in the DataTable "cons" displaying the connections remote properties / status.
             foreach (TcpConnectionInformation t in tcpi)
             {
-                cons.Rows.Add(new Object[] { t.LocalEndPoint.Port, t.RemoteEndPoint.Address, t.State });
+                //Fetches process according to ports
+                Process pro = ipsh.GetProcessByPort(t.LocalEndPoint.Port);
+                cons.Rows.Add(new Object[] { pro.ProcessName, pro.Id, t.LocalEndPoint.Port, t.RemoteEndPoint.Address, t.State });
             }
             //# END CONNECTION TABLE #
             //# START RECV TABLE UPDATE #
@@ -112,7 +118,6 @@ namespace WiFi_Sniffer
             tcpstat = ipgp.GetTcpIPv4Statistics();
             long rec = tcpstat.SegmentsReceived;
 
-            Console.WriteLine(rec - RECV_TOTAL);
             RECV_TOTAL = rec;
 
             //Returns value "rec" in a string formatted to KB, MB, or GB depending on the amount.

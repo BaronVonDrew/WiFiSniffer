@@ -29,8 +29,12 @@ namespace WiFi_Sniffer
             {
                 if (tcpr.LocalEndPoint.Port.Equals(port))
                 {
-                    p = Process.GetProcessById(tcpr.ProcessId);
-                    break;
+                    try
+                    {
+                        p = Process.GetProcessById(tcpr.ProcessId);
+                        break;
+                    }
+                    catch (Exception) { break;  }
                 }
             }
 

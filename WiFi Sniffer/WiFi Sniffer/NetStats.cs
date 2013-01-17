@@ -61,9 +61,13 @@ namespace WiFi_Sniffer
             //Creates a Row in the DataTable "cons" displaying the connections remote properties / status.
             foreach (TcpConnectionInformation t in tcpi)
             {
-                //Fetches process according to ports
-                Process pro = ipsh.GetProcessByPort(t.LocalEndPoint.Port);
-                cons.Rows.Add(new Object[] { pro.ProcessName, pro.Id, t.LocalEndPoint.Port, t.RemoteEndPoint.Address, t.State });
+                try
+                {
+                    //Fetches process according to ports
+                    Process pro = ipsh.GetProcessByPort(t.LocalEndPoint.Port);
+                    cons.Rows.Add(new Object[] { pro.ProcessName, pro.Id, t.LocalEndPoint.Port, t.RemoteEndPoint.Address, t.State });
+                }
+                catch (Exception) { }
             }
             //# END CONNECTION TABLE #
             //# START RECV TABLE UPDATE #

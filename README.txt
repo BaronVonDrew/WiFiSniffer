@@ -17,4 +17,7 @@ Usage:
 	Additionally, you can freeze the refresh timer to analyze the group of connections as they are in a certain point in time.
 	
 Updates:
-	15/1/2013 - Added live Send/Receive graphs to give a visual representation of how much data is being transmitted.
+	1/15/2013 - Added live Send/Receive graphs to give a visual representation of how much data is being transmitted.
+	
+	1/16/2013 - Added process information to the connection lists. Requires admin access.
+	
